@@ -23,6 +23,22 @@ RSpec.describe WorldsController, type: :controller do
     end
   end
 
+  describe "#show" do
+    it "returns http success" do
+      get :show, :id => world1.id
+      expect(response).to have_http_status(:success)
+    end
+
+    it "renders the show template" do
+    	get :show, :id => world1.id
+      expect(response).to render_template("show")
+    end
+
+    it "requires the :id parameter" do
+      expect { get :show }.to raise_error(ExpectedRoutingError)
+    end
+  end
+
   describe "#new" do
   	before(:each) {get :new}
   	render_views
@@ -34,6 +50,9 @@ RSpec.describe WorldsController, type: :controller do
     it "renders the new template" do
       expect(response).to render_template("new")
     end
+  end
+
+  describe "#create" do
   end
 
   describe "#edit" do
@@ -52,21 +71,6 @@ RSpec.describe WorldsController, type: :controller do
     end
   end
 
-  describe "#show" do
-    it "returns http success" do
-      get :show, :id => world1.id
-      expect(response).to have_http_status(:success)
-    end
-
-    it "renders the show template" do
-    	get :show, :id => world1.id
-      expect(response).to render_template("show")
-    end
-
-    it "requires the :id parameter" do
-      expect { get :show }.to raise_error(ExpectedRoutingError)
-    end
-  end
 
   describe "#update" do
     # it "responds to PUT" do
