@@ -3,7 +3,6 @@ require 'rails_helper'
 RSpec.describe World, type: :model do
 
 	let (:world1) { FactoryGirl.create(:world) } 
-	# let (:world2) { FactoryGirl.create(:world) }
 
 	it 'before save downcase' do
 		expect(world1).not_to eq('Administração')
